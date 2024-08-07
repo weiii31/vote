@@ -6,7 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 driver = webdriver.Chrome()
 vote_url = "https://poll.fm/14165530/embed"
-interval = 60 #2分鐘後投下一輪
+interval = 60 #1 minutes later vote it again
 votes_per_round = 5 # 每輪投票的次數
 
 try:
@@ -14,7 +14,7 @@ try:
         for _ in range(votes_per_round):
             driver.get(vote_url)
 
-            # 選擇投票選項（Blank）
+            # 選擇投票選項（: Blank the series）
             wait = WebDriverWait(driver, 10)
             vote_option = wait.until(EC.element_to_be_clickable((By.ID, "PDI_answer63080042")))
             vote_option.click()
@@ -46,7 +46,7 @@ try:
             # 防止過快操作
             time.sleep(2)
 
-        # 投完5次之後等2分鐘再投下一輪
+        # 投完5次之後等1分鐘再投下一輪
         time.sleep(interval)
 
 except KeyboardInterrupt:
